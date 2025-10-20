@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互动烟花 - 网站作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="fire.css">
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- 烟花画布 -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- 控制面板切换按钮 -->
+    <div class="control-toggle" id="controlToggle" title="隐藏/显示控制面板 (H)">
+        <i class="fas fa-sliders-h" id="toggleIcon"></i>
+    </div>
+
+    <!-- 使用说明切换按钮 -->
+    <div class="instructions-toggle" id="instructionsToggle" title="隐藏/显示使用说明 (I)">
+        <i class="fas fa-question" id="instructionsIcon"></i>
+    </div>
+
+    <!-- 标题隐藏按钮 -->
+    <div class="title-toggle" id="titleToggle" title="隐藏/显示标题 (T)">
+        <i class="fas fa-heading" id="titleIcon"></i>
+    </div>
+
+    <!-- 键盘快捷键提示 -->
+    <div class="keyboard-hint" id="keyboardHint" style="display: none;">
+        💡 快捷键: H - 隐藏面板 | I - 隐藏说明 | T - 隐藏标题 | M - 音乐控制 | ESC - 返回
+    </div>
+
+    <div class="container">
+        <a href="../websites.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回作品集
+        </a>
+        
+        <div class="header" id="header">
+            <h1 id="mainTitle">互动烟花秀</h1>
+            <p class="subtitle">点击任意位置释放炫酷烟花！拖动鼠标创建烟花轨迹</p>
+        </div>
+
+                <!-- 在键盘快捷键提示后面添加音乐播放器 -->
+        <div class="music-player" id="musicPlayer">
+            <div class="music-controls">
+                <button class="btn btn-music" id="toggleMusic" title="播放/暂停背景音乐 (M)">
+                    <i class="fas fa-play" id="musicIcon"></i>
+                </button>
+                <input type="range" class="music-slider" id="musicVolume" min="0" max="100" value="50" title="音量调节">
+                <span class="music-title" id="musicTitle">背景音乐</span>
+            </div>
+            <audio id="backgroundMusic" loop>
+                <!-- 这里替换为您的本地音乐文件路径 -->
+                <source src="../music/Aprial Encounter.mp3" type="audio/mpeg">
+                <source src="../music/Aprial Encounter.ogg" type="audio/ogg">
+                您的浏览器不支持音频元素
+            </audio>
+        </div>
+
+
+
+
+
+        <!-- 控制面板 -->
+        <div class="control-panel" id="controlPanel">
+            <div class="panel-content">
+                <h3 class="control-title">烟花控制台</h3>
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label class="control-label">烟花颜色</label>
+                        <select class="control-input" id="colorSelect">
+                            <option value="random">随机颜色</option>
+                            <option value="red">红色系</option>
+                            <option value="blue">蓝色系</option>
+                            <option value="green">绿色系</option>
+                            <option value="purple">紫色系</option>
+                            <option value="rainbow">彩虹色</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">粒子数量</label>
+                        <input type="range" class="control-input" id="particleCount" min="50" max="500" value="150">
+                        <span class="control-value" id="particleCountValue">150</span>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">爆炸强度</label>
+                        <input type="range" class="control-input" id="explosionPower" min="1" max="10" value="5">
+                        <span class="control-value" id="explosionPowerValue">5</span>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">拖尾效果</label>
+                        <select class="control-input" id="trailEffect">
+                            <option value="true">开启</option>
+                            <option value="false">关闭</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="autoFireworks">
+                        <i class="fas fa-magic"></i> 自动烟花秀
+                    </button>
+                    <button class="btn btn-secondary" id="clearAll">
+                        <i class="fas fa-broom"></i> 清除所有
+                    </button>
+                    <button class="btn btn-secondary" id="toggleSound">
+                        <i class="fas fa-volume-mute"></i> 音效
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="instructions" id="instructions">
+            <h3>使用说明</h3>
+            <ul class="instructions-list">
+                <li><i class="fas fa-mouse-pointer" style="color: var(--primary-color);"></i> 点击 - 释放单个烟花</li>
+                <li><i class="fas fa-arrows-alt" style="color: var(--secondary-color);"></i> 拖动 - 创建烟花轨迹</li>
+                <li><i class="fas fa-space-shuttle" style="color: var(--accent-color);"></i> 空格键 - 随机位置烟花</li>
+                <li><i class="fas fa-bolt" style="color: #ffeb3b;"></i> 双击 - 超级烟花</li>
+                <li><i class="fas fa-keyboard" style="color: var(--secondary-color);"></i> H键 - 隐藏/显示控制面板</li>
+                <li><i class="fas fa-keyboard" style="color: var(--primary-color);"></i> I键 - 隐藏/显示使用说明</li>
+                <li><i class="fas fa-keyboard" style="color: var(--accent-color);"></i> T键 - 隐藏/显示标题</li>
+            </ul>
+        </div>
+
+        <!-- 统计信息 -->
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-label">烟花数量:</span>
+                <span class="stat-value" id="fireworksCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">粒子总数:</span>
+                <span class="stat-value" id="particlesCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">点击次数:</span>
+                <span class="stat-value" id="clicksCount">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="fire.js"></script>
+</body>
+</html>

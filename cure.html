@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵治愈小站</title>
+    <link rel="stylesheet" href="cure-style.css">
+</head>
+<body>
+    <div class="container">
+
+    <!-- 在header之前添加返回按钮 -->
+    <a href="../main/index.html" class="back-button">← 返回首页</a>
+
+        <header>
+            <h1>心灵治愈小站</h1>
+            <p class="subtitle">在这里，你可以放松心情，释放压力，找到内心的宁静与平和</p>
+        </header>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h2>泡泡减压</h2>
+                <p>点击泡泡，感受它们轻轻破裂的治愈感，释放你的压力。</p>
+                <div class="bubble-area" id="bubbleArea"></div>
+                <p>已点击: <span id="bubbleCount">0</span> 个泡泡</p>
+            </div>
+            
+            <div class="feature-card">
+                <h2>心情记录</h2>
+                <p>选择你此刻的心情，记录下你的情绪变化。</p>
+                <div class="mood-tracker">
+                    <div class="mood-option" data-mood="sad">😔</div>
+                    <div class="mood-option" data-mood="neutral">😐</div>
+                    <div class="mood-option" data-mood="happy">😊</div>
+                    <div class="mood-option" data-mood="excited">😄</div>
+                    <div class="mood-option" data-mood="love">🥰</div>
+                </div>
+                <p id="moodMessage">今天你的心情如何？</p>
+            </div>
+            
+            <div class="feature-card">
+                <h2>冥想呼吸</h2>
+                <p>跟随呼吸圈的节奏，进行深呼吸练习，放松身心。</p>
+                <div class="breathing-circle" id="breathingCircle">
+                    点击开始呼吸练习
+                </div>
+                <p id="breathInstruction">吸气... 屏息... 呼气...</p>
+            </div>
+            
+            <div class="feature-card">
+                <h2>星空许愿</h2>
+                <p>在星空下许下心愿，让星星带走你的烦恼。</p>
+                <div class="wish-area" id="wishArea"></div>
+                <input type="text" class="wish-input" id="wishInput" placeholder="写下你的心愿...">
+                <button class="wish-button" id="wishButton">放飞心愿</button>
+            </div>
+            <!-- 在features网格中添加以下三个卡片 -->
+
+            <!-- 植物养成功能 -->
+            <div class="feature-card">
+                <h2>植物养成</h2>
+                <p>通过完成放松任务来照顾你的虚拟植物，看着它慢慢成长。</p>
+                <div class="plant-container">
+                    <div class="plant" id="plant">
+                        <div class="pot"></div>
+                        <div class="stem"></div>
+                        <div class="leaf leaf1"></div>
+                        <div class="leaf leaf2"></div>
+                        <div class="leaf leaf3"></div>
+                    </div>
+                </div>
+                <div class="plant-status">
+                    <p>成长值: <span id="growthValue">0</span>/100</p>
+                    <p>心情值: <span id="moodValue">50</span>/100</p>
+                </div>
+                <div class="plant-tasks">
+                    <button class="task-btn" id="breatheTask">完成呼吸练习</button>
+                    <button class="task-btn" id="moodTask">记录心情</button>
+                    <button class="task-btn" id="gratitudeTask">写感恩日记</button>
+                </div>
+            </div>
+
+            <!-- 自然声音播放器 -->
+            <div class="feature-card">
+                <h2>八音盒音乐</h2>
+                <p>选择一种音乐，营造宁静平和的氛围。</p>
+                <div class="sound-player">
+                    <div class="sound-option" data-sound="rain">
+                        <div class="sound-icon">🌧️</div>
+                        <span>Totoro（龙猫）</span>
+                    </div>
+                    <div class="sound-option" data-sound="waves">
+                        <div class="sound-icon">🌊</div>
+                        <span>与你同在</span>
+                    </div>
+                    <div class="sound-option" data-sound="birds">
+                        <div class="sound-icon">🐦</div>
+                        <span>鸟之诗</span>
+                    </div>
+                    <div class="sound-option" data-sound="forest">
+                        <div class="sound-icon">🌲</div>
+                        <span>森林</span>
+                    </div>
+                </div>
+                <div class="volume-control">
+                    <span>音量:</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                </div>
+                <p id="soundStatus">选择一个声音开始播放</p>
+            </div>
+
+            <!-- 色彩疗法 -->
+            <div class="feature-card">
+                <h2>色彩疗法</h2>
+                <p>选择一种颜色来调节你的情绪，感受色彩的能量。</p>
+                <div class="color-therapy">
+                    <div class="color-option" data-color="calm" style="background-color: #87CEEB;">
+                        <span>平静</span>
+                    </div>
+                    <div class="color-option" data-color="energy" style="background-color: #FF6B6B;">
+                        <span>活力</span>
+                    </div>
+                    <div class="color-option" data-color="happy" style="background-color: #FFD93D;">
+                        <span>快乐</span>
+                    </div>
+                    <div class="color-option" data-color="balance" style="background-color: #6BCF7F;">
+                        <span>平衡</span>
+                    </div>
+                </div>
+                <div class="color-display" id="colorDisplay">
+                    <p>感受色彩的能量...</p>
+                </div>
+                <div class="breathing-with-color" id="colorBreathing">
+                    <p>跟随颜色节奏深呼吸</p>
+                </div>
+            </div>
+
+        <!-- 八音盒钢琴模块 -->
+<div class="feature-card">
+    <h2>八音盒钢琴</h2>
+    <p>自由弹奏八音盒音色的钢琴，创造属于你的治愈旋律。</p>
+    
+    <div class="music-box-container">
+        <div class="music-box-top"></div>
+        <div class="music-box-bottom">
+            <div class="dancer" id="dancer"></div>
+        </div>
+    </div>
+    
+    <div class="piano-keyboard">
+        <!-- 白键 -->
+        <div class="white-keys">
+            <div class="white-key" data-note="C4">C</div>
+            <div class="white-key" data-note="D4">D</div>
+            <div class="white-key" data-note="E4">E</div>
+            <div class="white-key" data-note="F4">F</div>
+            <div class="white-key" data-note="G4">G</div>
+            <div class="white-key" data-note="A4">A</div>
+            <div class="white-key" data-note="B4">B</div>
+            <div class="white-key" data-note="C5">C</div>
+        </div>
+        
+        <!-- 黑键 -->
+        <div class="black-keys">
+            <div class="black-key" data-note="C#4">C#</div>
+            <div class="black-key" data-note="D#4">D#</div>
+            <div class="black-key" style="visibility: hidden;"></div> <!-- 占位 -->
+            <div class="black-key" data-note="F#4">F#</div>
+            <div class="black-key" data-note="G#4">G#</div>
+            <div class="black-key" data-note="A#4">A#</div>
+            <div class="black-key" style="visibility: hidden;"></div> <!-- 占位 -->
+        </div>
+    </div>
+    
+    <div class="piano-controls">
+        <div class="volume-control">
+            <span>音量:</span>
+            <input type="range" id="pianoVolume" min="0" max="100" value="50">
+        </div>
+        <button class="demo-btn" id="demoBtn">播放示范曲</button>
+    </div>
+    
+    <p id="pianoStatus">点击琴键开始弹奏</p>
+</div>
+
+
+
+        <div class="quote-section">
+            <p class="quote" id="quote">"生活中最美好的事物都是免费的，比如阳光、空气和爱。"</p>
+            <button class="new-quote" id="newQuote">新的治愈语录</button>
+        </div>
+        
+        <footer>
+            <p>心灵治愈小站 © 2023 | 愿你每天都有好心情</p>
+        </footer>
+    </div>
+
+    <script src="cure-script.js"></script>
+</body>
+</html>

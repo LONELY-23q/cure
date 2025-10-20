@@ -199,10 +199,10 @@ let currentSound = null;
 
 // 使用在线音频资源（免版权的自然声音）
 const soundFiles = {
-    rain: '../music/Totoro.mp3',
-    waves: '../music/Spirited away.mp3',
-    birds: '../music/background.mp3',
-    forest: '../music/Aprial Encounter.mp3'
+    rain: 'Totoro.mp3',
+    waves: 'Spirited away.mp3',
+    birds: 'background.mp3',
+    forest: 'Aprial Encounter.mp3'
 };
 
 // 备用音频资源（如果上面的链接不可用）
@@ -855,4 +855,5 @@ function stopDemo() {
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', function() {
     initAudio();
+
 });
